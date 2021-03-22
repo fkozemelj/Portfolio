@@ -1,3 +1,6 @@
+#ili npr. radis servis gdje ce osoba utipkati produkt i onda ti skrejpas 5 webshopova da nadjes najjeftiniji, 
+#onda tih 5 skripti sa 6-om (ulaznom) moze ici u jedan repo
+
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
