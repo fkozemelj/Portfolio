@@ -7,4 +7,4 @@ _________
 
 2) Scraping data from websites using Python. i) Scraping 4 local Vancouver stores with outdoor equipment with user input. ii) Scraping IMDB website for top 1000 movies of all time.
 
-3) Using SQLite to sort, join and analyze data.
+3) Using SQLite and matplotlib to do a basic analysis of San Francisco bike share program.
