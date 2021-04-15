@@ -154,7 +154,7 @@ FROM
         AND b.cost_element = f.cost_element)
         JOIN
     regions AS r ON b.country = r.country
-WHERE b.date BETWEEN '2020-07-01' AND '2020-12-30'
+WHERE b.date BETWEEN '2020-08-01' AND '2020-12-30'
 GROUP BY b.cost_element , r.region
 HAVING percentage_ratio > 130
 ORDER BY percentage_ratio DESC ;
