@@ -117,25 +117,49 @@ ALTER TABLE forecast
 
 ### Quering the data
 
-
-# Locating IT Departments from US with actual spending over planned budget
+# Finding IT departments with biggest percentage difference between actual spending and budget for first 7 months of the year
 
 SELECT 
-    actuals.date,
-    actuals.it_department,
-    SUM(actuals.actual) AS actual,
-    SUM(budget.budget) AS budget,
-    SUM(budget.budget) - SUM(actuals.actual) AS difference
+    a.country,
+    a.it_department,
+    SUM(a.actual) AS actual,
+    SUM(b.budget) AS budget,
+    ROUND(SUM(a.actual) / SUM(b.budget) * 100) AS percentage_ratio
 FROM
-    departments
+    actuals a
+        LEFT JOIN
+    budget b ON (a.date = b.date
+        AND a.it_department = b.it_department
+        AND a.country = b.country
+        AND a.cost_element = b.cost_element)
+GROUP BY a.it_department , a.country
+ORDER BY percentage_ratio DESC , a.country;
+    
+
+
+# Presenting elements of the region with biggest expected spending comparing to the budget from month of July onwards
+
+SELECT 
+    b.cost_element,
+    r.region,
+    SUM(b.budget) AS budget,
+    SUM(f.forecast) AS forecast,
+    ROUND(SUM(f.forecast) / SUM(b.budget) * 100) AS percentage_ratio
+FROM
+    budget AS b
         JOIN
-    actuals ON departments.it_department = actuals.it_department
+    forecast AS f ON (b.date = f.date
+        AND b.it_department = f.it_department
+        AND b.country = f.country
+        AND b.cost_element = f.cost_element)
         JOIN
-    budget ON departments.it_department = budget.it_department
-WHERE
-    actuals.country = 'USA'
-GROUP BY departments.it_department , actuals.date
-HAVING difference < 0;
+    regions AS r ON b.country = r.country
+WHERE b.date BETWEEN '2020-07-01' AND '2020-12-30'
+GROUP BY b.cost_element , r.region
+HAVING percentage_ratio > 130
+ORDER BY percentage_ratio DESC ;
+
+      
 
 
 # Presenting budget for Hardware and Software Maintenance for individual countries
