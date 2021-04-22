@@ -14,6 +14,7 @@ _________
 
 5) Creating a ETL process with **Python** to connect to the Spotify API, grab and verify the data on songs listened in last 24 hours. **SQLite** is then used to create the database and store the data.   
 
+\
 Disclaimer:
 
-Various open source websites, message boards, tutorials and lectures have been used as an inspiration for some of the parts of the projects.
+Various open source websites, message boards, tutorials and lectures have been used as an inspiration for some of the parts of the project.
