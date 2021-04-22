@@ -12,4 +12,8 @@ _________
 
 4) i) Using DAX functions and interactive dashboards made in **Power BI**, presenting a Business Intelligence case of a theoretical business. ii) Working with **MySQL** Workbench to create relational databe, import and clean data and run queries.
 
-5) Creating a ETL process with **Python** to connect to the Spotify API, grab and verify the data on songs listened in last 24 hours. **SQLite** is then used to create the database and store the data.
+5) Creating a ETL process with **Python** to connect to the Spotify API, grab and verify the data on songs listened in last 24 hours. **SQLite** is then used to create the database and store the data.   
+
+Disclaimer:
+
+Various open source websites, message boards, tutorials and lectures have been used as an inspiration for some of the parts of the projects.
