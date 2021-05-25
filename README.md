@@ -1,7 +1,7 @@
 # Portfolio
 (Work in progress)
 
-A collection of small projects from various fields tied to Data Analytics, Data Science and Business Intelligence. 
+A collection of projects from various fields tied to Data Analytics, Data Science and Business Intelligence. 
 _________
 
 1) Coronavirus vaccination rates corelated with GDP per capita. Using linear regression in **Python** with Pandas and Sklearn as a statistical method to determine possible corelation between variables. [Interactive dashboard](https://public.tableau.com/views/VaccinationData_16165580396780/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link) made in **Tableau** to present and analyze data. Vaccination dataset has been obtained from Kaggle. GDP per capita has been obtained from World Bank database. 
