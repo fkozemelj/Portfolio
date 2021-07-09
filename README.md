@@ -1,5 +1,4 @@
 # Portfolio
-(Work in progress)
 
 A collection of projects from various fields tied to Data Analytics, Data Science and Business Intelligence. 
 _________
