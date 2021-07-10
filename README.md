@@ -13,6 +13,8 @@ _________
 
 5) Creating a ETL process with **Python** to connect to the Spotify API, grab and verify the data on songs listened in last 24 hours. **SQLite** is then used to create the database and store the data.   
 
+6) Dashboard created in **Tableau** that analyzes City of Vancouver crime rates from 2003-2020. 2021 is not being taken into the account due to incomplete data. Interactive dashboard can be seen [here](https://public.tableau.com/views/VancouverCrime_16259254719950/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link). Crime can be filtered by the neighbourhood, crime type, time of day and month of the year.
+
 \
 Disclaimer:
 
