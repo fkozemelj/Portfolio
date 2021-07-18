@@ -15,7 +15,4 @@ _________
 
 6) Dashboard created in **Tableau** that analyzes City of Vancouver crime rates from 2003-2020. 2021 is not being taken into the account due to incomplete data. Interactive dashboard can be seen [here](https://public.tableau.com/views/VancouverCrime_16259254719950/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link). Crime can be filtered by the neighbourhood, crime type, time of day and month of the year.
 
-\
-Disclaimer:
 
-Various open source websites, message boards, tutorials and lectures have been used as an inspiration for some of the parts of the project.
