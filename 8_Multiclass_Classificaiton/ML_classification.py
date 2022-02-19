@@ -12,6 +12,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
+from sklearn.ensemble import RandomForestClassifier
 
 
 # In[2]:
@@ -93,19 +94,13 @@ df_id
 # In[14]:
 
 
-# Combining data from two columns named below as inputs provided nominaly better weighted average precision (0.75) comparing
-# to the model used (0.62). Reagrdless, I found that predictions using combined columns as inputs were heavily skewed 
-# towards "NO COND" classification. 
-
-# In our Holdout dataset we should expect roughly similar distribution of Conditions as in our much bigger ClaimData dataset.
-
-# desc = df_id['DiagnosisOne'] +' ' + df_id['ItemDescription']
+desc = df_id['DiagnosisOne'] +' ' + df_id['ItemDescription']
 
 
 # In[15]:
 
 
-X_train, X_test, y_train, y_test = train_test_split(df_id['DiagnosisOne'], df_id['Condition'], test_size= 0.20, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(desc, df_id['Condition'], test_size= 0.20, random_state = 5)
 
 count_vect = CountVectorizer()
 
@@ -137,58 +132,86 @@ print(metrics.classification_report(y_test, y_pred_class))
 # In[19]:
 
 
-df2 = pd.read_csv('Holdout.csv')
+X_train, X_test, y_train, y_test = train_test_split(desc, df_id['Condition'], test_size= 0.2, random_state = 5)
+
+count_vect = CountVectorizer()
+
+X_train_counts = count_vect.fit_transform(X_train)
+
+X_train_tfidf = TfidfTransformer().fit_transform(X_train_counts)
 
 
 # In[20]:
 
 
-df2.head()
+rnd = RandomForestClassifier().fit(X_train_tfidf, y_train)
 
 
 # In[21]:
 
 
-df2['DiagnosisOne'].isnull().sum()
+X_test_dtm = count_vect.transform(X_test)
+
+y_pred_class = rnd.predict(X_test_dtm)
+
+print(metrics.classification_report(y_test, y_pred_class))
 
 
 # In[22]:
 
 
-df2 = df2[pd.notnull(df2['DiagnosisOne'])]
+df2 = pd.read_csv('Holdout.csv')
 
 
 # In[23]:
 
 
-new_input = df2['DiagnosisOne']
+df2.head()
 
 
 # In[24]:
 
 
-new_output = clf.predict(count_vect.transform(new_input))
+df2['DiagnosisOne'].isnull().sum()
 
 
 # In[25]:
 
 
-df2['Condition'] = new_output
+df2 = df2[pd.notnull(df2['DiagnosisOne'])]
 
 
 # In[26]:
 
 
-df2
+new_input = df2['DiagnosisOne']
 
 
 # In[27]:
 
 
-df2['Condition'].nunique()
+new_output = rnd.predict(count_vect.transform(new_input))
 
 
 # In[28]:
+
+
+df2['Condition'] = new_output
+
+
+# In[29]:
+
+
+df2
+
+
+# In[30]:
+
+
+df2['Condition'].nunique()
+
+
+# In[31]:
 
 
 fig = plt.figure(figsize=(10,6))
@@ -196,7 +219,7 @@ df2.groupby('Condition').DiagnosisOne.count().plot.bar(ylim=0)
 plt.show()
 
 
-# In[29]:
+# In[32]:
 
 
 # Random manual check for "UTI" in both datasets discovered that a lot of simple descriptions in column "DiagnosisOne"
@@ -205,8 +228,14 @@ plt.show()
 # reason behind discrepancies in the original dataset.
 
 
-# In[30]:
+# In[33]:
 
 
 df2.to_csv('Holdout_Prediction.csv', index=None)
+
+
+# In[ ]:
+
+
+
 
